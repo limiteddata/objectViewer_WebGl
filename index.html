@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Webgl editor</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gl-matrix/2.8.1/gl-matrix-min.js"></script>
+  </head>
+
+  <body>
+    <canvas id="glcanvas" width="800" height="600" style="border: 5px solid rgb(39, 39, 39)"></canvas>
+    <br>
+    <i>Camera Sens:</i> <input oninput='changeCamSens(this.value/1000)' type="range" id="CamSens" value="10" min="0" max="100"/>
+    <i>FOV: </i><input type="range" oninput='changeFov(this.value)' id="FOVSlider" value="45" min="10" max="120"/>
+    <i>Render wireframe: </i><input oninput='renderWireframe(this.checked)' type="checkbox" id="enableWireframe"/>
+    <div id="Textures">
+      <i>Texture: </i>
+      <img class="texture" onclick='changeTextureto(this.src)' src="http://st.depositphotos.com/1217569/2471/i/450/depositphotos_24714185-Green-grass-texture.jpg" width="60" >
+      <img class="texture" onclick='changeTextureto(this.src)' src="https://designshack.net/wp-content/uploads/background-textures.png" width="60" >
+      <img class="texture" onclick='changeTextureto(this.src)' src="https://designshack.net/wp-content/uploads/best-watercolor-backgrounds-368x246.jpg" width="60" >
+      <img class="texture" onclick='changeTextureto(this.src)' src="https://designshack.net/wp-content/uploads/rainbow-background-textures-368x246.jpg" width="60" >
+    </div>
+    <input type="file" accept="image/*" onchange="loadNewTexture(event)">
+    <button id="SpawnNewObject" onclick='changeFov(45);'>Reset camera</button>
+    <br>
+    <br>
+    <button id="SpawnNewObject" onclick='var cube = new Cube(); spawnNewObject(cube);'>Spawn Cube</button>
+    <button id="SpawnNewObject" onclick='var obj = new Pyramid(); spawnNewObject(obj);'>Spawn pyramid</button>
+    <br>
+    <br>
+    <a id="saveImage" onclick='saveImage(this)' style="padding:5px; background-color: rgb(224, 224, 224); border: 1px solid black; border-radius: 4px;">Save Image!</a>
+    <pre>
+      Controls: 
+       W A S D to move the object
+       Arrows to rotate the object
+       Delete to remove the object
+       T / Shift+T(uniform) to scale the object
+       Right click to rotate the camera
+       Scroll to zoom in/out
+       Mouse wheel click to move the camera
+    </pre>
+    <script src="script.js" defer></script>
+  </body>
+</html>
